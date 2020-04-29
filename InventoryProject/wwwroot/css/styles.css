@@ -1,0 +1,45 @@
+h1 {
+    color: rgb(24, 24, 22);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h2 {
+    color: rgb(49, 98, 233);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h3 {
+    color: rgb(24, 24, 22);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+ul li {
+    color: rgb(252, 8, 20);
+    font-style: normal;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+pre {
+    color: cornflowerblue;
+    font: bold;
+    font-style: normal;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+nav {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+table,
+th,
+td {
+    border: 0.5px solid black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+    border-collapse: collapse;
+    border-spacing: 10px;
+}
+
+.background {
+    background-color: dodgerblue
+}
