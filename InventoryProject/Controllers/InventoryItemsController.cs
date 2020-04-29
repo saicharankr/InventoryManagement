@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InventoryProject.Data;
 using InventoryProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryProject.Controllers
 {
+    [Authorize]
     public class InventoryItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -50,11 +52,11 @@ namespace InventoryProject.Controllers
         }
 
         // POST: InventoryItems/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo")] InventoryItems inventoryItems)
+        public async Task<IActionResult> Create([Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt")] InventoryItems inventoryItems)
         {
             if (ModelState.IsValid)
             {
@@ -81,12 +83,9 @@ namespace InventoryProject.Controllers
             return View(inventoryItems);
         }
 
-        // POST: InventoryItems/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo")] InventoryItems inventoryItems)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status")] InventoryItems inventoryItems)
         {
             if (id != inventoryItems.ItemID)
             {

@@ -13,6 +13,11 @@ h3 {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+h4{
+    color: rgb(24, 24, 22);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 ul li {
     color: rgb(252, 8, 20);
     font-style: normal;
@@ -42,4 +47,25 @@ td {
 
 .background {
     background-color: dodgerblue
+}
+
+.Absolute-Center {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+    .Absolute-Center.is-Responsive {
+        width: 50%;
+        height: 50%;
+        min-width: 200px;
+        max-width: 400px;
+        padding: 40px;
+    }
+
+.text-align-center {
+    text-align: center;
 }

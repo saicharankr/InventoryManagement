@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using InventoryProject.Models;
+using Microsoft.AspNetCore.Authorization;
+using SQLitePCL;
 
 namespace InventoryProject.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,6 +23,9 @@ namespace InventoryProject.Controllers
 
         public IActionResult Index()
         {
+            int hour = DateTime.Now.Hour;
+            ViewBag.Greeting = User.Identity.Name;
+            ViewBag.Time = hour;
             return View();
         }
 

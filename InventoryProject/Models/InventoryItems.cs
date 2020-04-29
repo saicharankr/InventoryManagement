@@ -22,5 +22,9 @@ namespace InventoryProject.Models
         public string History { get; set; }
 
         public string BillInfo { get; set; }
+
+        public string Status { get; set; }
+
+        public DateTime CreatedAt { get; set; }
     }
 }
