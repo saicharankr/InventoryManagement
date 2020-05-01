@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QRCoder;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -43,7 +46,6 @@ namespace InventoryProject.Controllers
             {
                 return NotFound();
             }
-
             return View(inventoryItems);
         }
 
@@ -54,11 +56,9 @@ namespace InventoryProject.Controllers
         }
 
         // POST: InventoryItems/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,SerialNumber,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt,ItemImage,UserGroup,Category,AssignedTo")] InventoryItems inventoryItems)
+        public async Task<IActionResult> Create([Bind("ItemID,SerialNumber,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt,ItemImage,QrCodeName,UserGroup,Category,AssignedTo")] InventoryItems inventoryItems)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +74,7 @@ namespace InventoryProject.Controllers
                 }
 
                 inventoryItems.CreatedAt = DateTime.UtcNow;
+                inventoryItems.QrCodeName = inventoryItems.SerialNumber + "_" + inventoryItems.ItemName + ".jpg";
                 _context.Add(inventoryItems);
 
                 await _context.SaveChangesAsync();
@@ -162,6 +163,39 @@ namespace InventoryProject.Controllers
         private bool InventoryItemsExists(int id)
         {
             return _context.InventoryItems.Any(e => e.ItemID == id);
+        }
+
+        public async Task<IActionResult> QrCode(int? id)
+        {
+            var info = await _context.InventoryItems.FirstOrDefaultAsync(m => m.ItemID == id);
+
+            string qrinfo = "Serial Number :- " + info.SerialNumber + " ItemName:-" + info.ItemName;
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrinfo, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            var bitmapBytes = BitmapToBytes(qrCodeImage);//Convert bitmap into a byte array
+            string wwwRootPath = webHostEnvironment.WebRootPath;
+            string filename = info.QrCodeName;
+            string path = Path.Combine(wwwRootPath + "/Qrcodes/", filename);
+
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                qrCodeImage.Save(fileStream, System.Drawing.Imaging.ImageFormat.Png);
+            }
+
+            return File(bitmapBytes, "image/jpeg"); //Return as file result
+        }
+
+        // This method is for converting bitmap into a byte array
+        private byte[] BitmapToBytes(Bitmap img)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
         }
     }
 }

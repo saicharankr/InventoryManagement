@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "QrCode";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>QR Code</h1>
+<img src='@Url.Action("image")' alt="" />
+<script>
+    $(document).ready(function () {
+        alert('ViewBag.image');
+    });
+</script>

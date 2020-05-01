@@ -8,7 +8,7 @@
 <h4>Inventory</h4>
 <hr />
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-8">
         <dl class="row">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.ItemID)
@@ -84,13 +84,23 @@
             </dd>
         </dl>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <dl>
             <dt class="col-md-6">
                 @Html.DisplayNameFor(model => model.ItemImage)
             </dt>
             <dd class="col-md-6">
-                <img class="lazyload" src="~/Images/@Model.ImageName" data-orig-src="@("~/Images/"+Model.ImageName)" asp-append-version="true" height="250" width="250" />
+                <img class="lazyload" src="~/Images/@Model.ImageName" data-orig-src="@("~/Images/"+Model.ImageName)" asp-append-version="true" height="150" width="150" />
+            </dd>
+        </dl>
+    </div>
+    <div class="col-md-2">
+        <dl>
+            <dt class="col-md-6" style="text-align:center">
+                   QrCode
+            </dt>
+            <dd class="col-md-6">
+                <img class="lazyload" src="~/Qrcodes/@Model.QrCodeName" data-orig-src="@("~/Qrcodes/"+Model.QrCodeName)" asp-append-version="true" height="150" width="150" />
             </dd>
         </dl>
     </div>

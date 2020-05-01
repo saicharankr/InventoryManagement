@@ -41,6 +41,8 @@ namespace InventoryProject.Models
         [Display(Name = "Item Image")]
         public IFormFile ItemImage { get; set; }
 
+        public string QrCodeName { get; set; }
+
         public string ImageName { get; set; }
     }
 }

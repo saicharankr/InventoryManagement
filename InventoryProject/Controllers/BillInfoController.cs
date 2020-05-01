@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using InventoryProject.Data;
+﻿using InventoryProject.Data;
 using InventoryProject.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace InventoryProject.Controllers
 {
@@ -69,6 +68,7 @@ namespace InventoryProject.Controllers
                     await billInfo.UploadBill.CopyToAsync(fileStream);
                 }
 
+                billInfo.CreatedAt = DateTime.UtcNow;
                 _context.Add(billInfo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
