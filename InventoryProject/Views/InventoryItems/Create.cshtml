@@ -9,12 +9,17 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ItemName" class="control-label"></label>
                 <input asp-for="ItemName" class="form-control" />
                 <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PurchaseDate" class="control-label"></label>
@@ -26,6 +31,17 @@
                 <input asp-for="PurchaseHours" class="form-control" />
                 <span asp-validation-for="PurchaseHours" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="UserGroup" class="control-label"></label>
+                <input asp-for="UserGroup" class="form-control" />
+                <span asp-validation-for="UserGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedTo" class="control-label"></label>
+                <input asp-for="AssignedTo" class="form-control" />
+                <span asp-validation-for="AssignedTo" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="History" class="control-label"></label>
                 <input asp-for="History" class="form-control" />
@@ -47,6 +63,12 @@
                 </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="ItemImage" class="control-label"></label>
+                <input asp-for="ItemImage" accept="image/*" />
+                <span asp-validation-for="ItemImage" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

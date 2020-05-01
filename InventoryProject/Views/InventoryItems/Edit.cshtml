@@ -17,6 +17,11 @@
                 <span asp-validation-for="ItemName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="PurchaseDate" class="control-label"></label>
                 <input asp-for="PurchaseDate" class="form-control" />
                 <span asp-validation-for="PurchaseDate" class="text-danger"></span>
@@ -25,6 +30,16 @@
                 <label asp-for="PurchaseHours" class="control-label"></label>
                 <input asp-for="PurchaseHours" class="form-control" />
                 <span asp-validation-for="PurchaseHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserGroup" class="control-label"></label>
+                <input asp-for="UserGroup" class="form-control" />
+                <span asp-validation-for="UserGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedTo" class="control-label"></label>
+                <input asp-for="AssignedTo" class="form-control" />
+                <span asp-validation-for="AssignedTo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="History" class="control-label"></label>

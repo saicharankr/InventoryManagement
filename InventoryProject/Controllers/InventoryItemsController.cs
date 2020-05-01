@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using InventoryProject.Data;
+﻿using InventoryProject.Data;
 using InventoryProject.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace InventoryProject.Controllers
 {
@@ -15,10 +15,12 @@ namespace InventoryProject.Controllers
     public class InventoryItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public InventoryItemsController(ApplicationDbContext context)
+        public InventoryItemsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            webHostEnvironment = hostEnvironment;
         }
 
         // GET: InventoryItems
@@ -56,10 +58,22 @@ namespace InventoryProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt")] InventoryItems inventoryItems)
+        public async Task<IActionResult> Create([Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt,ItemImage,UserGroup,Category,AssignedTo")] InventoryItems inventoryItems)
         {
             if (ModelState.IsValid)
             {
+                //Save image to wwwroot/image
+                string wwwRootPath = webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(inventoryItems.ItemImage.FileName);
+                string extension = Path.GetExtension(inventoryItems.ItemImage.FileName);
+                inventoryItems.ImageName = fileName = inventoryItems.ItemID + DateTime.Now.ToString("_yyyyMMdd_HHmmss") + extension;
+                string path = Path.Combine(wwwRootPath + "/Images/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await inventoryItems.ItemImage.CopyToAsync(fileStream);
+                }
+
+                inventoryItems.CreatedAt = DateTime.UtcNow;
                 _context.Add(inventoryItems);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,7 +99,7 @@ namespace InventoryProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status")] InventoryItems inventoryItems)
+        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,UserGroup,Category,AssignedTo")] InventoryItems inventoryItems)
         {
             if (id != inventoryItems.ItemID)
             {
