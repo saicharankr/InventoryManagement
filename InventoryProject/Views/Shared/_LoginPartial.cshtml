@@ -15,6 +15,9 @@
             <a class="nav-link" asp-area="" asp-controller="InventoryItems" asp-action="Index">Inventory</a>
         </li>
         <li class="nav-item active">
+            <a class="nav-link" asp-area="" asp-controller="BillInfo" asp-action="Index">BillsInfo</a>
+        </li>
+        <li class="nav-item active">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
             </form>

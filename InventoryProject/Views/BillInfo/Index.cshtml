@@ -1,0 +1,60 @@
+﻿@model IEnumerable<InventoryProject.Models.BillInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Bill Information</h1>
+
+<p>
+    <a class="btn btn-outline-primary" role="button" asp-action="Create">Add Bill</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BillNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfItems)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchasedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfItems)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchasedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApprovedBy)
+                </td>
+                <td>
+                    <a class="btn btn-outline-secondary btn-sm" role="button" asp-action="Edit" asp-route-id="@item.BillId">Edit</a>
+                    <a class="btn btn-outline-info btn-sm" role="button" asp-action="Details" asp-route-id="@item.BillId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

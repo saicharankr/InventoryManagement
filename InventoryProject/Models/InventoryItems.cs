@@ -13,6 +13,8 @@ namespace InventoryProject.Models
         [Key]
         public int ItemID { get; set; }
 
+        public string SerialNumber { get; set; }
+
         public string ItemName { get; set; }
 
         [DataType(DataType.Date)]

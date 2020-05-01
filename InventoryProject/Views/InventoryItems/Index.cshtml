@@ -16,6 +16,9 @@
                 @Html.DisplayNameFor(model => model.ItemID)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ItemName)
             </th>
             <th>
@@ -45,6 +48,9 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ItemName)

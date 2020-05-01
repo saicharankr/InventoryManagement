@@ -32,6 +32,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "3.1.2",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.3",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.2",
+          "jQuery.UI.Widgets.Datepicker": "1.8.9",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -293,6 +294,17 @@
         },
         "compile": {
           "InventoryProject.dll": {}
+        }
+      },
+      "jQuery/1.4.4": {},
+      "jQuery.UI.Core/1.8.9": {
+        "dependencies": {
+          "jQuery": "1.4.4"
+        }
+      },
+      "jQuery.UI.Widgets.Datepicker/1.8.9": {
+        "dependencies": {
+          "jQuery.UI.Core": "1.8.9"
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.3": {
@@ -3994,6 +4006,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "jQuery/1.4.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kexCeYIZehR5fRjo8CK1sngN5SZEQRFNfCYZHMS1RxwEEiSKetBw/gliYJcLJdJEBB+e9aHqleLCjuaSI7u23g==",
+      "path": "jquery/1.4.4",
+      "hashPath": "jquery.1.4.4.nupkg.sha512"
+    },
+    "jQuery.UI.Core/1.8.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Sib0IXtCSVnA9wX6i0enHxHTZmBW0mLncfjtjjU3wWUMnQgmTxlenvOZBKUqpFjA0/nFQgsJqsANO74YphTc+g==",
+      "path": "jquery.ui.core/1.8.9",
+      "hashPath": "jquery.ui.core.1.8.9.nupkg.sha512"
+    },
+    "jQuery.UI.Widgets.Datepicker/1.8.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cA1RW6ms1azPhXg6OKFptRPljO1Pky8WsUo57AHfHVIUvVZZA1GZ7Iygu9Sc+y33Mq7wncX9+hruDgzUm34N7w==",
+      "path": "jquery.ui.widgets.datepicker/1.8.9",
+      "hashPath": "jquery.ui.widgets.datepicker.1.8.9.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.3": {
       "type": "package",

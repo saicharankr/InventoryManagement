@@ -58,7 +58,7 @@ namespace InventoryProject.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt,ItemImage,UserGroup,Category,AssignedTo")] InventoryItems inventoryItems)
+        public async Task<IActionResult> Create([Bind("ItemID,SerialNumber,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt,ItemImage,UserGroup,Category,AssignedTo")] InventoryItems inventoryItems)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace InventoryProject.Controllers
                 string wwwRootPath = webHostEnvironment.WebRootPath;
                 string fileName = Path.GetFileNameWithoutExtension(inventoryItems.ItemImage.FileName);
                 string extension = Path.GetExtension(inventoryItems.ItemImage.FileName);
-                inventoryItems.ImageName = fileName = inventoryItems.ItemID + DateTime.Now.ToString("_yyyyMMdd_HHmmss") + extension;
+                inventoryItems.ImageName = fileName = inventoryItems.SerialNumber + DateTime.Now.ToString("_yyyyMMdd_HHmmss") + extension;
                 string path = Path.Combine(wwwRootPath + "/Images/", fileName);
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -75,6 +75,7 @@ namespace InventoryProject.Controllers
 
                 inventoryItems.CreatedAt = DateTime.UtcNow;
                 _context.Add(inventoryItems);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
