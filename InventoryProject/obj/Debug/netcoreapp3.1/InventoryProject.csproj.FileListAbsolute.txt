@@ -451,3 +451,4 @@ D:\workbench\InventoryProject\InventoryProject\bin\Debug\netcoreapp3.1\Microsoft
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\InventoryProject.csproj.CoreCompileInputs.cache
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\InventoryProject.MvcApplicationPartsAssemblyInfo.cs
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\InventoryProject.MvcApplicationPartsAssemblyInfo.cache
+D:\workbench\InventoryProject\InventoryProject\bin\Debug\netcoreapp3.1\Web.Test.config
