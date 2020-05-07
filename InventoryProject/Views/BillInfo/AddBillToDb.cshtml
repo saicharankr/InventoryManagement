@@ -58,7 +58,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="button" onclick="addRow()" class="btn btn-secondary">Add Item</button>
-                                <button type="button" onclick="duplicate()" class="btn btn-secondary">Add next</button>
+                                <button type="button" onclick="duplicate()" class="btn btn-secondary">Clear</button>
                             </div>
                         </div>
                     </div>
@@ -101,6 +101,9 @@
                             <th>
                                 Status
                             </th>
+                            <th>
+                                RemoveItem
+                            </th>
                         </tr>
                     </thead>
                 </table>
@@ -128,6 +131,10 @@
         function duplicate() {
             original.innerHTML = document.getElementById('NextItem').innerHTML
         };
+
+        function productDelete(ctl) {
+            $(ctl).parents("tr").remove();
+        };
     </script>
     <script type="text/javascript">
         function addRow() {
@@ -147,6 +154,7 @@
             var td8 = document.createElement("td");
             var td9 = document.createElement("td");
             var td0 = document.createElement("td");
+            var td11 = document.createElement("td")
 
             td1.innerHTML = document.getElementById("SerialNumber").value;
             td2.innerHTML = document.getElementById("ItemName").value;
@@ -158,6 +166,9 @@
             td7.innerHTML = document.getElementById("History").value;
             td8.innerHTML = document.getElementById("BillInfo").value;
             td9.innerHTML = document.getElementById("Status").value;
+            td11.innerHTML = "<button type='button' " +
+                "onclick='productDelete(this);' " +
+                "class='btn btn-warning'>" + "X" + "</button>"
 
             row.appendChild(td1);
             row.appendChild(td2);
@@ -169,6 +180,7 @@
             row.appendChild(td7);
             row.appendChild(td8);
             row.appendChild(td9);
+            row.appendChild(td11)
 
             table.children[0].appendChild(row);
         };
