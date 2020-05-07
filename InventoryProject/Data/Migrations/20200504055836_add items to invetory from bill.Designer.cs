@@ -4,14 +4,16 @@ using InventoryProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InventoryProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200504055836_add items to invetory from bill")]
+    partial class additemstoinvetoryfrombill
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,57 +100,6 @@ namespace InventoryProject.Data.Migrations
                     b.HasKey("ItemID");
 
                     b.ToTable("InventoryItems");
-                });
-
-            modelBuilder.Entity("InventoryProject.ViewModels.BillinfoAddItemViewModel", b =>
-                {
-                    b.Property<int>("ItemID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AssignedTo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BillInfo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("History")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ItemName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("PurchaseHours")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("QrCodeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SerialNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserGroup")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ItemID");
-
-                    b.ToTable("BillinfoAddItemViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace InventoryProject.Models
 {
-    public class BillInfo
+    public class BillInfoModel
     {
         [Key]
         public int BillId { get; set; }
@@ -23,12 +20,6 @@ namespace InventoryProject.Models
 
         public string BillName { get; set; }
 
-        [Display(Name = "Number of Items in bill")]
-        public int NumberOfItems { get; set; }
-
-        [NotMapped]
-        public List<string> Items { get; set; }
-
         [DataType(DataType.Date)]
         [Display(Name = "Bill Date")]
         public DateTime BillDate { get; set; }
@@ -40,5 +31,8 @@ namespace InventoryProject.Models
         public string ApprovedBy { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        [NotMapped]
+        public List<InventoryItemModel> InventoryItems { get; set; } = new List<InventoryItemModel>();
     }
 }

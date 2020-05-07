@@ -1,4 +1,4 @@
-﻿@model IEnumerable<InventoryProject.Models.InventoryItems>
+﻿@model IEnumerable<InventoryProject.Models.InventoryItemModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,7 +7,7 @@
 <h1>Inventory</h1>
 
 <p>
-    <a class="btn btn-outline-primary" role="button" asp-action="Create">Add Item</a>
+    <a class="btn btn-outline-primary" role="button" asp-action="AddItemToInventory">Add Item</a>
 </p>
 <table class="table table-bordered table-hover">
     <thead class="thead-dark">
@@ -74,10 +74,9 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    <a class="btn btn-outline-secondary btn-sm" role="button" asp-action="Edit" asp-route-id="@item.ItemID">Edit</a>
-                    <a class="btn btn-outline-info btn-sm" role="button" asp-action="Details" asp-route-id="@item.ItemID">Details</a>
-                    <a class="btn btn-outline-info btn-sm" role="button" asp-action="QrCode" asp-route-id="@item.ItemID">QrCode</a>
-                </td>
+                    <a class="btn btn-outline-secondary btn-sm" role="button" asp-action="EditItem" asp-route-id="@item.ItemID">Edit</a>
+                    <a class="btn btn-outline-info btn-sm" role="button" asp-action="ItemDetails" asp-route-id="@item.ItemID">Details</a>
+                    <a class="btn btn-outline-info btn-sm" role="button" asp-action="DeleteItem" asp-route-id="@item.ItemID">Delete</a>
             </tr>
         }
     </tbody>

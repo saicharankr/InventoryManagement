@@ -1,4 +1,4 @@
-﻿@model InventoryProject.Models.InventoryItems
+﻿@model InventoryProject.Models.InventoryItemModel
 
 @{
     ViewData["Title"] = "Details";
@@ -97,15 +97,17 @@
     <div class="col-md-2">
         <dl>
             <dt class="col-md-6" style="text-align:center">
-                   QrCode
+                QrCode
             </dt>
             <dd class="col-md-6">
-                <img class="lazyload" src="~/Qrcodes/@Model.QrCodeName" data-orig-src="@("~/Qrcodes/"+Model.QrCodeName)" asp-append-version="true" height="150" width="150" />
+                <a href="~/Qrcodes/@Model.QrCodeName" download="@Model.QrCodeName">
+                    <img class="lazyload" src="~/Qrcodes/@Model.QrCodeName" data-orig-src="@("~/Qrcodes/"+Model.QrCodeName)" asp-append-version="true" height="150" width="150" />
+                </a>
             </dd>
         </dl>
     </div>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ItemID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="EditItem" asp-route-id="@Model.ItemID">Edit</a> |
+    <a asp-action="InventoryIndex">Back to List</a>
 </div>

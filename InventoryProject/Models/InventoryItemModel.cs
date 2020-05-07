@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryProject.Models
 {
-    public class InventoryItems
+    public class InventoryItemModel
     {
         [Key]
         public int ItemID { get; set; }

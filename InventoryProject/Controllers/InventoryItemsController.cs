@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QRCoder;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -27,19 +26,19 @@ namespace InventoryProject.Controllers
         }
 
         // GET: InventoryItems
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> InventoryIndex()
         {
             return View(await _context.InventoryItems.ToListAsync());
         }
 
         // GET: InventoryItems/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> ItemDetails(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
+            await QrCode(id);
             var inventoryItems = await _context.InventoryItems
                 .FirstOrDefaultAsync(m => m.ItemID == id);
             if (inventoryItems == null)
@@ -50,15 +49,15 @@ namespace InventoryProject.Controllers
         }
 
         // GET: InventoryItems/Create
-        public IActionResult Create()
+        public IActionResult AddItemToInventory()
         {
             return View();
         }
 
-        // POST: InventoryItems/Create
+        // POST: InventoryItems/AddItemToInventory
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ItemID,SerialNumber,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt,ItemImage,QrCodeName,UserGroup,Category,AssignedTo")] InventoryItems inventoryItems)
+        public async Task<IActionResult> AddItemToInventory([Bind("ItemID,SerialNumber,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,CreatedAt,ItemImage,QrCodeName,UserGroup,Category,AssignedTo")] InventoryItemModel inventoryItems)
         {
             if (ModelState.IsValid)
             {
@@ -78,13 +77,13 @@ namespace InventoryProject.Controllers
                 _context.Add(inventoryItems);
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(InventoryIndex));
             }
             return View(inventoryItems);
         }
 
         // GET: InventoryItems/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditItem(int? id)
         {
             if (id == null)
             {
@@ -101,7 +100,7 @@ namespace InventoryProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemID,ItemName,PurchaseDate,PurchaseHours,History,BillInfo,Status,UserGroup,Category,AssignedTo")] InventoryItems inventoryItems)
+        public async Task<IActionResult> EditItem(int id, [Bind("ItemID,ItemName,SerialNumber,PurchaseDate,PurchaseHours,History,BillInfo,Status,UserGroup,Category,AssignedTo")] InventoryItemModel inventoryItems)
         {
             if (id != inventoryItems.ItemID)
             {
@@ -126,13 +125,13 @@ namespace InventoryProject.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(InventoryIndex));
             }
             return View(inventoryItems);
         }
 
         // GET: InventoryItems/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DeleteItem(int? id)
         {
             if (id == null)
             {
@@ -150,14 +149,14 @@ namespace InventoryProject.Controllers
         }
 
         // POST: InventoryItems/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteItem")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var inventoryItems = await _context.InventoryItems.FindAsync(id);
             _context.InventoryItems.Remove(inventoryItems);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(InventoryIndex));
         }
 
         private bool InventoryItemsExists(int id)
@@ -185,7 +184,7 @@ namespace InventoryProject.Controllers
                 qrCodeImage.Save(fileStream, System.Drawing.Imaging.ImageFormat.Png);
             }
 
-            return File(bitmapBytes, "image/jpeg"); //Return as file result
+            return View("ItemDetails"); //Return as file result
         }
 
         // This method is for converting bitmap into a byte array

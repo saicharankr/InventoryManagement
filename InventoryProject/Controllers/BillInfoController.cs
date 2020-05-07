@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,13 +22,13 @@ namespace InventoryProject.Controllers
         }
 
         // GET: BillInfo
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> BillIndex()
         {
             return View(await _context.BillInfo.ToListAsync());
         }
 
         // GET: BillInfo/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> BillDetails(int? id)
         {
             if (id == null)
             {
@@ -47,14 +46,14 @@ namespace InventoryProject.Controllers
         }
 
         // GET: BillInfo/Create
-        public IActionResult Create()
+        public IActionResult AddBillToDb()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BillId,BillNumber,UploadBill,BillName,NumberOfItems,Items,BillDate,PurchasedBy,ApprovedBy")] BillInfo billInfo)
+        public async Task<IActionResult> AddBillToDb([Bind("BillId,BillNumber,UploadBill,BillName,NumberOfItems,Items,BillDate,PurchasedBy,ApprovedBy")] BillInfoModel billInfo)
         {
             if (ModelState.IsValid)
             {
@@ -71,13 +70,21 @@ namespace InventoryProject.Controllers
                 billInfo.CreatedAt = DateTime.UtcNow;
                 _context.Add(billInfo);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                foreach (InventoryItemModel item in billInfo.InventoryItems)
+                {
+                    item.CreatedAt = DateTime.UtcNow;
+                    item.QrCodeName = item.SerialNumber + "_" + item.ItemName + ".jpg";
+                    _context.InventoryItems.Add(item);
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(BillIndex));
             }
             return View(billInfo);
         }
 
         // GET: BillInfo/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> BillEdit(int? id)
         {
             if (id == null)
             {
@@ -93,11 +100,10 @@ namespace InventoryProject.Controllers
         }
 
         // POST: BillInfo/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BillId,BillNumber,Upload Bill,NumberOfItems,Items,BillDate,PurchasedBy,ApprovedBy")] BillInfo billInfo)
+        public async Task<IActionResult> BillEdit(int id, [Bind("BillId,BillNumber,Upload Bill,NumberOfItems,Items,BillDate,PurchasedBy,ApprovedBy")] BillInfoModel billInfo)
         {
             if (id != billInfo.BillId)
             {
@@ -122,13 +128,13 @@ namespace InventoryProject.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(BillIndex));
             }
             return View(billInfo);
         }
 
         // GET: BillInfo/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DeleteBill(int? id)
         {
             if (id == null)
             {
@@ -153,7 +159,7 @@ namespace InventoryProject.Controllers
             var billInfo = await _context.BillInfo.FindAsync(id);
             _context.BillInfo.Remove(billInfo);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(BillIndex));
         }
 
         private bool BillInfoExists(int id)
