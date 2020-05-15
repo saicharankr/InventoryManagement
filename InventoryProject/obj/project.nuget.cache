@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Bvus72dL9urFtY/BjJlZpKZIo01l9E001ivn1zLZgJ9QW5kfxBYRZbGOIs+p+fdRrw+zK278EuyZwjgkIUqrtQ==",
+  "dgSpecHash": "P3fWe//Cere7I6+KGy9qaQDKYgcRVA0okaQ8VxRqCtuUzsnTFXVAuFZkDvzZKp2UzOLFxStcP1Ie9Alp3Giqnw==",
   "success": true,
   "projectFilePath": "D:\\workbench\\InventoryProject\\InventoryProject\\InventoryProject.csproj",
   "expectedPackageFiles": [
@@ -93,6 +93,7 @@
     "C:\\Users\\CS-9\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\CS-9\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\CS-9\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\CS-9\\.nuget\\packages\\sendgrid\\9.14.1\\sendgrid.9.14.1.nupkg.sha512",
     "C:\\Users\\CS-9\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.0.2\\sqlitepclraw.bundle_e_sqlite3.2.0.2.nupkg.sha512",
     "C:\\Users\\CS-9\\.nuget\\packages\\sqlitepclraw.core\\2.0.2\\sqlitepclraw.core.2.0.2.nupkg.sha512",
     "C:\\Users\\CS-9\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.2\\sqlitepclraw.lib.e_sqlite3.2.0.2.nupkg.sha512",

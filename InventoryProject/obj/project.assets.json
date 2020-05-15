@@ -1294,6 +1294,18 @@
           }
         }
       },
+      "SendGrid/9.14.1": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/SendGrid.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SendGrid.dll": {}
+        }
+      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
         "type": "package",
         "dependencies": {
@@ -4944,6 +4956,26 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "SendGrid/9.14.1": {
+      "sha512": "fidg69+CTUCKfVs3I9HhsajJXIHurhqPzcTu/TiQU4dTe4NLDBpMvUWBEbOZFIesulOgnVMiQLm0ycJX17wUeQ==",
+      "type": "package",
+      "path": "sendgrid/9.14.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/SendGrid.dll",
+        "lib/net452/SendGrid.pdb",
+        "lib/net452/SendGrid.xml",
+        "lib/netstandard1.3/SendGrid.dll",
+        "lib/netstandard1.3/SendGrid.pdb",
+        "lib/netstandard1.3/SendGrid.xml",
+        "lib/netstandard2.0/SendGrid.dll",
+        "lib/netstandard2.0/SendGrid.pdb",
+        "lib/netstandard2.0/SendGrid.xml",
+        "sendgrid.9.14.1.nupkg.sha512",
+        "sendgrid.nuspec"
       ]
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.0.2": {
@@ -9199,6 +9231,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.3",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.2",
       "QRCoder >= 1.3.9",
+      "SendGrid >= 9.14.1",
       "jQuery.UI.Widgets.Datepicker >= 1.8.9"
     ]
   },
@@ -9276,6 +9309,10 @@
           "QRCoder": {
             "target": "Package",
             "version": "[1.3.9, )"
+          },
+          "SendGrid": {
+            "target": "Package",
+            "version": "[9.14.1, )"
           },
           "jQuery.UI.Widgets.Datepicker": {
             "target": "Package",
