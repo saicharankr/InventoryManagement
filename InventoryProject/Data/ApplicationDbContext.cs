@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using InventoryProject.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace InventoryProject.Data
 {

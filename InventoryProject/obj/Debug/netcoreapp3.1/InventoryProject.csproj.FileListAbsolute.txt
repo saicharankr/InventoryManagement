@@ -450,7 +450,6 @@ D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\Razor\Are
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\Razor\Views\Role\CreateRole.cshtml.g.cs
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\Razor\Views\Role\RoleIndex.cshtml.g.cs
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\Razor\Views\BillInfo\AddBillToDb.cshtml.g.cs
-D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\Razor\Views\BillInfo\AddItemsToBill.cshtml.g.cs
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\Razor\Views\BillInfo\BIllDetails.cshtml.g.cs
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\Razor\Views\BillInfo\BillEdit.cshtml.g.cs
 D:\workbench\InventoryProject\InventoryProject\obj\Debug\netcoreapp3.1\Razor\Views\BillInfo\BillIndex.cshtml.g.cs

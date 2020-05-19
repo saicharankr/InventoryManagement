@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using InventoryProject.Data;
 using InventoryProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,11 +16,13 @@ namespace InventoryProject.Controllers
     {
         private RoleManager<IdentityRole> _roleManager;
         private UserManager<IdentityUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
-        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _context = context;
         }
 
         public IActionResult RoleIndex()
@@ -36,6 +39,8 @@ namespace InventoryProject.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRole(IdentityRole role)
         {
+            var rows = _context.Roles.Count();
+            role.Id = Math.Pow(2, rows).ToString();
             await _roleManager.CreateAsync(role);
             return RedirectToAction("RoleIndex");
         }
@@ -100,7 +105,7 @@ namespace InventoryProject.Controllers
             {
                 IdentityResult result = await _roleManager.DeleteAsync(role);
                 if (result.Succeeded)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("RoleIndex");
                 else
                     Errors(result);
             }

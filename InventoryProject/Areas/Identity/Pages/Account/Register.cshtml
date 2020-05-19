@@ -29,30 +29,15 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
 
-            @*<div class="form-group">
-                    <label asp-for="Input.AssignRole"></label>
-                    <select asp-for="Input.AssignRole" class="form-control" asp-items='new SelectList(roles,"Id","Name")'></select>
-                    <span asp-validation-for="Input.AssignRole" class="text-danger"></span>
-                </div>*@
             <div class="form-group">
-                <label asp-for="Input.AssignRole">Assign Role</label>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" asp-for="Input.AssignRole" type="checkbox" value="SuperAdmin">
-                    <label class="form-check-label">Super Admin</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    s
-                    <input class="form-check-input" asp-for="Input.AssignRole" type="checkbox" value="Admin">
-                    <label class="form-check-label">Admin</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" asp-for="Input.AssignRole" type="checkbox" value="Maintainer">
-                    <label class="form-check-label">Maintainer</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" asp-for="Input.AssignRole" type="checkbox" value="Auditor">
-                    <label class="form-check-label">Auditor</label>
-                </div>
+
+                @foreach (var role in roles)
+                {
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" name="Input.AssignRole" type="checkbox" value="@role.Id">
+                        <label class="form-check-label">@role.Name</label>
+                    </div>
+                }
             </div>
             <button type="submit" class="btn btn-primary">Invite</button>
         </form>

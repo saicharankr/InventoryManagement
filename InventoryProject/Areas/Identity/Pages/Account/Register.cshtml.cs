@@ -72,14 +72,15 @@ namespace InventoryProject.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
+            [BindProperty]
             [Display(Name = "Assign Role")]
-            public string AssignRole { get; set; }
+            public List<string> AssignRole { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
         {
             // pass the Role List using ViewData
-            ViewData["roles"] = _roleManager.Roles.ToList();
+
             ReturnUrl = returnUrl;
         }
 
@@ -91,6 +92,7 @@ namespace InventoryProject.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            ViewData["roles"] = _roleManager.Roles.ToList();
             returnUrl = returnUrl ?? Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -110,10 +112,16 @@ namespace InventoryProject.Areas.Identity.Pages.Account
                 //}
                 if (result.Succeeded)
                 {
-                    var role = _roleManager.FindByNameAsync(Input.AssignRole).Result;
+                    foreach (var role1 in Input.AssignRole)
+                    {
+                        var role = _roleManager.FindByIdAsync(role1).Result;
+
+                        await _userManager.AddToRoleAsync(user, role.Name);
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
-                    await _userManager.AddToRoleAsync(user, role.Name);
+                    //await _userManager.AddToRoleAsync(user, role.Name);
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
@@ -125,11 +133,14 @@ namespace InventoryProject.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
+                        return RedirectToPage("RegisterConfirmation", new
+                        {
+                            email = Input.Email
+                        });
                     }
                     else
                     {
