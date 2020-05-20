@@ -112,10 +112,11 @@ namespace InventoryProject.Areas.Identity.Pages.Account
                 //}
                 if (result.Succeeded)
                 {
+                    int tempId = 0;
                     foreach (var role1 in Input.AssignRole)
                     {
                         var role = _roleManager.FindByIdAsync(role1).Result;
-
+                        tempId += Int32.Parse(role.Id);
                         await _userManager.AddToRoleAsync(user, role.Name);
                     }
 

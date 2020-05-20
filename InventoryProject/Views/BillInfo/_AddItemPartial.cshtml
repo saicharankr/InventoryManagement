@@ -5,74 +5,71 @@
 }
 
 @*<form method="post" asp-controller="Billinfo" asp-action="AddAndContinue" enctype="multipart/form-data">*@
-<form>
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="SerialNumber" class="control-label"></label>
-        <input asp-for="SerialNumber" class="form-control" id="SerialNumber" />
-        <span asp-validation-for="SerialNumber" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ItemName" class="control-label"></label>
-        <input asp-for="ItemName" class="form-control" id="ItemName" />
-        <span asp-validation-for="ItemName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Category" class="control-label"></label>
-        <input asp-for="Category" class="form-control" id="Category" />
-        <span asp-validation-for="Category" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PurchaseDate" class="control-label"></label>
-        <input asp-for="PurchaseDate" class="form-control" id="PurchaseDate" />
-        <span asp-validation-for="PurchaseDate" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="PurchaseHours" class="control-label"></label>
-        <input asp-for="PurchaseHours" class="form-control" id="PurchaseHours" />
-        <span asp-validation-for="PurchaseHours" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="UserGroup" class="control-label"></label>
-        <input asp-for="UserGroup" class="form-control" id="UserGroup" />
-        <span asp-validation-for="UserGroup" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="AssignedTo" class="control-label"></label>
-        <input asp-for="AssignedTo" class="form-control" id="AssignedTo" />
-        <span asp-validation-for="AssignedTo" class="text-danger"></span>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="History" class="control-label"></label>
-        <input asp-for="History" class="form-control" id="History" />
-        <span asp-validation-for="History" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="BillInfo" class="control-label"></label>
-        <input asp-for="BillInfo" class="form-control" id="BillInfo" />
-        <span asp-validation-for="BillInfo" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Status" class="control-label"></label>
-        <select asp-for="Status" class="form-control" id="Status">
-            <option value="">Choose an option</option>
-            <option value="New">New</option>
-            <option value="Archived">Archived</option>
-            <option value="Need approval">Need approval</option>
-            <option value="Need maintenance">Need maintenance</option>
-        </select>
-        <span asp-validation-for="Status" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ItemImage" class="control-label"></label>
-        <input asp-for="ItemImage" accept="image/*" />
-        <span asp-validation-for="ItemImage" class="text-danger"></span>
-    </div>
-    @*<div class="form-group">
-            <input type="submit" value="Add Item" formaction="AddItemsToBill" class="btn btn-primary" />
-        </div>*@
-</form>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="SerialNumber" class="control-label"></label>
+    <input asp-for="SerialNumber" class="form-control" id="SerialNumber" />
+    <span asp-validation-for="SerialNumber" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ItemName" class="control-label"></label>
+    <input asp-for="ItemName" class="form-control" id="ItemName" />
+    <span asp-validation-for="ItemName" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Category" class="control-label"></label>
+    <input asp-for="Category" class="form-control" id="Category" />
+    <span asp-validation-for="Category" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="PurchaseDate" class="control-label"></label>
+    <input asp-for="PurchaseDate" class="form-control" id="PurchaseDate" />
+    <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="PurchaseHours" class="control-label"></label>
+    <input asp-for="PurchaseHours" class="form-control" id="PurchaseHours" />
+    <span asp-validation-for="PurchaseHours" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="UserGroup" class="control-label"></label>
+    <input asp-for="UserGroup" class="form-control" id="UserGroup" />
+    <span asp-validation-for="UserGroup" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="AssignedTo" class="control-label"></label>
+    <input asp-for="AssignedTo" class="form-control" id="AssignedTo" />
+    <span asp-validation-for="AssignedTo" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="History" class="control-label"></label>
+    <input asp-for="History" class="form-control" id="History" />
+    <span asp-validation-for="History" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="BillInfo" class="control-label"></label>
+    <input asp-for="BillInfo" class="form-control" id="BillInfo" />
+    <span asp-validation-for="BillInfo" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Status" class="control-label"></label>
+    <select asp-for="Status" class="form-control" id="Status">
+        <option value="">Choose an option</option>
+        <option value="New">New</option>
+        <option value="Archived">Archived</option>
+        <option value="Need approval">Need approval</option>
+        <option value="Need maintenance">Need maintenance</option>
+    </select>
+    <span asp-validation-for="Status" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ItemImage" class="control-label"></label>
+    <input asp-for="ItemImage" accept="image/*" />
+    <span asp-validation-for="ItemImage" class="text-danger"></span>
+</div>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

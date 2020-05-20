@@ -57,7 +57,7 @@ namespace InventoryProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddBillToDb([Bind("BillId,BillNumber,UploadBill,BillName,NumberOfItems,Items,BillDate,PurchasedBy,ApprovedBy")] BillInfoModel billInfo)
+        public async Task<IActionResult> AddBillToDb([Bind("BillId,BillNumber,UploadBill,BillName,NumberOfItems,Items,BillDate,PurchasedBy,ApprovedBy,InventoryItems")] BillInfoModel billInfo)
         {
             if (ModelState.IsValid)
             {
