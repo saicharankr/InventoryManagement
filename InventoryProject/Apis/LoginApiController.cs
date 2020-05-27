@@ -30,7 +30,7 @@ namespace InventoryProject.Apis
         [Route("login")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] string emailaddress, string password)
+        public async Task<IActionResult> Login(string emailaddress, string password)
         {
             try
             {

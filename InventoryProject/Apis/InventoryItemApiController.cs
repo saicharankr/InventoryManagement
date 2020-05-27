@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using InventoryProject.Data;
 using InventoryProject.Models;
 using InventoryProject.Apis.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryProject.Apis
 {
@@ -31,7 +32,7 @@ namespace InventoryProject.Apis
         }
 
         [HttpGet]
-        //[Microsoft.AspNetCore.Authorization.Authorize(AuthenticationSchemes = "jwt")]
+        [Authorize]
         [Route("users")]
         public ActionResult<IEnumerable<UsersViewModel>> GetUser(int id)
         {
