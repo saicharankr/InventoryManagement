@@ -1,18 +1,14 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using InventoryProject.Data;
+using InventoryProject.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using InventoryProject.Services;
-
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using System.Collections.Generic;
 
 namespace InventoryProject
@@ -63,7 +59,13 @@ namespace InventoryProject
                 });
             });
 
-            //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddProgressiveWebApp(new PwaOptions
+            //{
+            //    CacheId = "Worker " + version,
+            //    Strategy = ServiceWorkerStrategy.CacheFirst,
+            //    RoutesToPreCache = "/Home/Contact, /Home/About",
+            //    OfflineRoute = "fallBack.html",
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

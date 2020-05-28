@@ -78,7 +78,7 @@ namespace InventoryProject.Apis
             return inventoryItemModel;
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("InventoryItemApi/update")]
         public async Task<ActionResult<InventoryItemModel>> PostInventoryItemModel(InventoryItemModel inventoryItemModel)
         {
@@ -103,11 +103,6 @@ namespace InventoryProject.Apis
             await _context.SaveChangesAsync();
 
             return inventoryItemModel;
-        }
-
-        private bool InventoryItemModelExists(int id)
-        {
-            return _context.InventoryItems.Any(e => e.ItemID == id);
         }
     }
 }
