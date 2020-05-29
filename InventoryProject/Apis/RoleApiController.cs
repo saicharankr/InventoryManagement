@@ -1,4 +1,5 @@
-﻿using InventoryProject.Data;
+﻿using InventoryProject.Apis.ViewModels;
+using InventoryProject.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
@@ -48,6 +49,37 @@ namespace InventoryProject.Apis
             await _roleManager.CreateAsync(role);
 
             return "RoleCreated";
+        }
+
+        [HttpGet]
+        [Route("RoleApi/GetListOfUserRoles")]
+        public ActionResult<IEnumerable<IdentityUserRole<string>>> GetListOfUserRoles()
+        {
+            var result = _context.UserRoles.ToList();
+
+            return result;
+        }
+
+        [HttpPost]
+        public async Task<string> AssignOrRemoveRole(AssignOrRemoveRoleViewModel Assign)
+        {
+            foreach (string userId in Assign.AddIds ?? new string[] { })
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user != null)
+                {
+                    await _userManager.AddToRoleAsync(user, Assign.RoleName);
+                }
+            }
+            foreach (string userId in Assign.DeleteIds ?? new string[] { })
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user != null)
+                {
+                    await _userManager.RemoveFromRoleAsync(user, Assign.RoleName);
+                }
+            }
+            return "operation Done";
         }
     }
 }
