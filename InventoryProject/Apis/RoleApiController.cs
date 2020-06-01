@@ -1,15 +1,12 @@
 ﻿using InventoryProject.Apis.ViewModels;
 using InventoryProject.Data;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace InventoryProject.Apis
 {

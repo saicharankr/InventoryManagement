@@ -95,21 +95,12 @@ namespace InventoryProject.Areas.Identity.Pages.Account
             ViewData["roles"] = _roleManager.Roles.ToList();
             returnUrl = returnUrl ?? Url.Content("~/");
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                //try
-                //{
-                //    var username = user.UserName.ToString();
-                //    await _userManager.AddToRoleAsync(user, role.ToString());
-                //    _context.SaveChanges();
-                //}
-                //catch
-                //{
-                //    throw;
-                //}
+
                 if (result.Succeeded)
                 {
                     int tempId = 0;
