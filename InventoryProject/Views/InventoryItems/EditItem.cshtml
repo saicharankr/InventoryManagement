@@ -1,0 +1,83 @@
+﻿@model InventoryProject.Models.InventoryItemModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Inventory Item</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditItem">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ItemID" />
+            <div class="form-group">
+                <label asp-for="SerialNumber" class="control-label"></label>
+                <input asp-for="SerialNumber" class="form-control" />
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label"></label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseDate" class="control-label"></label>
+                <input asp-for="PurchaseDate" class="form-control" />
+                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseHours" class="control-label"></label>
+                <input asp-for="PurchaseHours" class="form-control" />
+                <span asp-validation-for="PurchaseHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserGroup" class="control-label"></label>
+                <input asp-for="UserGroup" class="form-control" />
+                <span asp-validation-for="UserGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssignedTo" class="control-label"></label>
+                <input asp-for="AssignedTo" class="form-control" />
+                <span asp-validation-for="AssignedTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="History" class="control-label"></label>
+                <input asp-for="History" class="form-control" />
+                <span asp-validation-for="History" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BillInfo" class="control-label"></label>
+                <input asp-for="BillInfo" class="form-control" />
+                <span asp-validation-for="BillInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control">
+                    <option value="">Choose an option</option>
+                    <option value="New">New</option>
+                    <option value="Archived">Archived</option>
+                    <option value="Need approval">Need approval</option>
+                    <option value="Need maintenance">Need maintenance</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="InventoryIndex">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

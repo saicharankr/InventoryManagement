@@ -19,6 +19,36 @@ namespace InventoryProject.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("InventoryProject.Models.BillInfo", b =>
+                {
+                    b.Property<int>("BillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApprovedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("BillDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("BillName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BillNumber")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PurchasedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BillId");
+
+                    b.ToTable("BillInfo");
+                });
+
             modelBuilder.Entity("InventoryProject.Models.InventoryItems", b =>
                 {
                     b.Property<int>("ItemID")
@@ -26,13 +56,22 @@ namespace InventoryProject.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AssignedTo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("BillInfo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("History")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ItemName")
@@ -44,12 +83,72 @@ namespace InventoryProject.Data.Migrations
                     b.Property<DateTime>("PurchaseHours")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("QrCodeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SerialNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserGroup")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ItemID");
 
                     b.ToTable("InventoryItems");
+                });
+
+            modelBuilder.Entity("InventoryProject.ViewModels.BillinfoAddItemViewModel", b =>
+                {
+                    b.Property<int>("ItemID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AssignedTo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BillInfo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("History")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ItemName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("PurchaseHours")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("QrCodeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SerialNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserGroup")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ItemID");
+
+                    b.ToTable("BillinfoAddItemViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

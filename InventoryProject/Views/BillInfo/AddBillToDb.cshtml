@@ -1,0 +1,192 @@
+﻿@model InventoryProject.Models.BillInfoModel
+
+@{
+    ViewData["Title"] = "AddBillToDb";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h1>Add BillInfo</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddBillToDb" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BillNumber" class="control-label"></label>
+                <input asp-for="BillNumber" class="form-control" />
+                <span asp-validation-for="BillNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UploadBill" class="control-label"></label>
+                <input asp-for="UploadBill" accept="image/*" />
+                <span asp-validation-for="UploadBill" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BillDate" class="control-label"></label>
+                <input asp-for="BillDate" class="form-control" />
+                <span asp-validation-for="BillDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchasedBy" class="control-label"></label>
+                <input asp-for="PurchasedBy" class="form-control" />
+                <span asp-validation-for="PurchasedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApprovedBy" class="control-label"></label>
+                <input asp-for="ApprovedBy" class="form-control" />
+                <span asp-validation-for="ApprovedBy" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
+                    Add Items
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Add Item</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @for (int i = 0; i < 2; i++)
+                            {
+                                <div id="NextItem" class="modal-body">
+                                    <partial name="_AddItemPartial" for="@Model.InventoryItems[i]" />
+                                </div>
+                            }
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" onclick="addRow()" class="btn btn-secondary">Add Item</button>
+                                <button type="button" onclick="duplicate()" class="btn btn-secondary">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+
+            <div class="form-group">
+                <h2>List of Items You Added</h2>
+                <table id="table" class="table table-bordered table-hover" border="1">
+                    <thead>
+                        <tr>
+                            <th>
+                                SerialNumber
+                            </th>
+                            <th>
+                                ItemName
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                PurchaseDate
+                            </th>
+                            <th>
+                                PurchaseHours
+                            </th>
+                            <th>
+                                UserGroup
+                            </th>
+                            <th>
+                                AssignedTo
+                            </th>
+                            <th>
+                                History
+                            </th>
+                            <th>
+                                BillInfo
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                RemoveItem
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit Bill" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="BillIndex">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        var count = 0;
+        var original = document.getElementById('NextItem');
+
+        function duplicate() {
+            original.innerHTML = document.getElementById('NextItem').innerHTML
+            count++
+        };
+
+        function productDelete(ctl) {
+            $(ctl).parents("tr").remove();
+        };
+    </script>
+    <script type="text/javascript">
+        function addRow() {
+            "use strict";
+
+            var table = document.getElementById("table");
+
+            var row = document.createElement("tr");
+            console.log(row);
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            var td3 = document.createElement("td");
+            var td4 = document.createElement("td");
+            var td5 = document.createElement("td");
+            var td6 = document.createElement("td");
+            var td7 = document.createElement("td");
+            var td8 = document.createElement("td");
+            var td9 = document.createElement("td");
+            var td0 = document.createElement("td");
+            var td11 = document.createElement("td")
+
+            td1.innerHTML = document.getElementById("SerialNumber").value;
+            td2.innerHTML = document.getElementById("ItemName").value;
+            td3.innerHTML = document.getElementById("Category").value;
+            td4.innerHTML = document.getElementById("PurchaseDate").value;
+            td5.innerHTML = document.getElementById("PurchaseHours").value;
+            td0.innerHTML = document.getElementById("UserGroup").value;
+            td6.innerHTML = document.getElementById("AssignedTo").value;
+            td7.innerHTML = document.getElementById("History").value;
+            td8.innerHTML = document.getElementById("BillInfo").value;
+            td9.innerHTML = document.getElementById("Status").value;
+            td11.innerHTML = "<button type='button' " +
+                "onclick='productDelete(this);' " +
+                "class='btn btn-warning'>" + "X" + "</button>"
+
+            row.appendChild(td1);
+            row.appendChild(td2);
+            row.appendChild(td3);
+            row.appendChild(td4);
+            row.appendChild(td5);
+            row.appendChild(td0);
+            row.appendChild(td6);
+            row.appendChild(td7);
+            row.appendChild(td8);
+            row.appendChild(td9);
+            row.appendChild(td11)
+
+            table.children[0].appendChild(row);
+        };
+    </script>
+}

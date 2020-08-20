@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using InventoryProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using InventoryProject.Models;
-using Microsoft.AspNetCore.Authorization;
-using SQLitePCL;
+using System;
+using System.Diagnostics;
 
 namespace InventoryProject.Controllers
 {

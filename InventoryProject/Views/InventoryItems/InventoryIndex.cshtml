@@ -1,0 +1,83 @@
+﻿@model IEnumerable<InventoryProject.Models.InventoryItemModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Inventory</h1>
+
+<p>
+    <a class="btn btn-outline-primary" role="button" asp-action="AddItemToInventory">Add Item</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.History)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.History)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillInfo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a class="btn btn-outline-secondary btn-sm" role="button" asp-action="EditItem" asp-route-id="@item.ItemID">Edit</a>
+                    <a class="btn btn-outline-info btn-sm" role="button" asp-action="ItemDetails" asp-route-id="@item.ItemID">Details</a>
+                    <a class="btn btn-outline-info btn-sm" role="button" asp-action="DeleteItem" asp-route-id="@item.ItemID">Delete</a>
+            </tr>
+        }
+    </tbody>
+</table>

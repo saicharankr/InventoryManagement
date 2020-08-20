@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using InventoryProject.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace InventoryProject.Data
 {
@@ -14,6 +15,8 @@ namespace InventoryProject.Data
         {
         }
 
-        public DbSet<InventoryProject.Models.InventoryItems> InventoryItems { get; set; }
+        public DbSet<InventoryProject.Models.InventoryItemModel> InventoryItems { get; set; }
+
+        public DbSet<InventoryProject.Models.BillInfoModel> BillInfo { get; set; }
     }
 }
